@@ -5,7 +5,9 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
+
 app.use(express.static(path.join(__dirname, 'public')));
+
 io.on('connection', (socket) => {
     socket.on('join-room', (roomId) => {
         socket.join(roomId);
@@ -18,5 +20,6 @@ io.on('connection', (socket) => {
         io.to(data.to).emit('signal', { from: socket.id, signal: data.signal });
     });
 });
+
 const PORT = process.env.PORT || 3000;
 server.listen(PORT, () => console.log('Bulut Live Hazir'));
