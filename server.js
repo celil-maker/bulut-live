@@ -2,11 +2,16 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const path = require('path');
+const fs = require('fs');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*" } });
 
-app.use(express.static(path.join(__dirname, 'public')));
+const publicPath = path.join(__dirname, 'public');
+console.log('Public path:', publicPath);
+console.log('Files in public:', fs.existsSync(publicPath) ? fs.readdirSync(publicPath) : 'YOK!');
+
+app.use(express.static(publicPath));
 
 io.on('connection', (socket) => {
     socket.on('join-room', (roomId) => {
@@ -22,4 +27,4 @@ io.on('connection', (socket) => {
 });
 
 const PORT = process.env.PORT || 3000;
-server.listen(PORT, () => console.log('Bulut Live Hazir'));
+server.listen(PORT, () => console.log('Bulut Live Hazir - ' + PORT));
