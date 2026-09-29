@@ -1,20 +1,20 @@
 {
-  "name": "Bulut Live",
+  "name": "Bulut Live - Canli Yayin",
   "short_name": "Bulut Live",
-  "description": "Bulut Live - Canli Yayin",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#000000",
-  "theme_color": "#00aaff",
+  "background_color": "#0f172a",
+  "theme_color": "#0f172a",
+  "description": "Bulut Live Canli Yayin",
   "icons": [
     {
-      "src": "icon-192.png",
+      "src": "https://bulut-live.onrender.com/icon-192.png",
       "sizes": "192x192",
       "type": "image/png",
       "purpose": "any maskable"
     },
     {
-      "src": "icon-512.png",
+      "src": "https://bulut-live.onrender.com/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
