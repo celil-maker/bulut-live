@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Bulut Live</title>
+<style>
+body{background:#0f0f0f;color:#fff;font-family:Arial;text-align:center;margin:0}
+h1{color:#38bdf8;margin:15px} .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:10px}
+.box{background:#1f1f1f;border-radius:12px;aspect-ratio:16/9;overflow:hidden;position:relative;border:2px solid #333}
+.box video{width:100%;height:100%;object-fit:cover} .box span{position:absolute;bottom:5px;left:5px;background:rgba(0,0,0,.7);padding:2px 8px;border-radius:6px;font-size:12px}
+.guests{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;padding:10px} button{background:#38bdf8;color:#000;border:0;padding:12px 25px;border-radius:30px;font-weight:700;font-size:16px;margin:15px}
+</style></head><body>
+<h1>☁️ BULUT LIVE</h1>
+<button id="startBtn">YAYINI BAŞLAT</button>
+<div class="grid"><div class="box"><video id="localVideo" autoplay muted playsinline></video><span>SEN</span></div><div class="box" id="main2"></div></div>
+<div class="guests" id="guests"></div>
+<script src="/socket.io/socket.io.js"></script>
+<script>
+const socket=io();const ROOM="bulut-live-oda1";let localStream;const startBtn=document.getElementById('startBtn');
+startBtn.onclick=async()=>{localStream=await navigator.mediaDevices.getUserMedia({video:{width:320},audio:true});document.getElementById('localVideo').srcObject=localStream;socket.emit('join-room',ROOM);startBtn.style.display='none'};
+for(let i=0;i<8;i++){let d=document.createElement('div');d.className='box';d.id='guest-'+i;d.innerHTML='<span>MİSAFİR '+(i+1)+'</span>';document.getElementById('guests').appendChild(d)}
+</script></body></html>
